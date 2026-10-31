@@ -1,0 +1,6 @@
+{
+  "name": "ROSEWOOD",
+  "description": "A personal academic and lifestyle management platform for college students. Make time for what matters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

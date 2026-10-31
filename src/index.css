@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #293C32;
+  --color-forest-hover: #1f2e26;
+  --color-forest-subtle: #3B5246;
+  --color-forest-light: #4C6758;
+  --color-forest-ultraLight: #F0F4F1;
+
+  --color-ivory: #F7F4EC;
+  --color-ivory-paper: #FAF8F3;
+  --color-ivory-card: #FFFFFF;
+
+  --color-blush: #E8DDD1;
+  --color-blush-subtle: #F2ECE5;
+  --color-blush-border: #D9CBBB;
+
+  --color-rose: #B98579;
+  --color-rose-hover: #A57368;
+  --color-rose-muted: #CFA79E;
+  --color-rose-soft: #F4ECE9;
+
+  --color-gold: #D6B77A;
+  --color-gold-hover: #C7A563;
+  --color-gold-soft: #F9F4EB;
+
+  --color-charcoal: #292D29;
+  --color-charcoal-muted: #656A65;
+  --color-charcoal-faded: #9A9F9A;
+
+  --font-heading: 'Manrope', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+
+  --shadow-soft-sm: 0 1px 2px 0 rgba(41, 60, 50, 0.04);
+  --shadow-soft: 0 4px 12px -2px rgba(41, 60, 50, 0.06), 0 2px 4px -1px rgba(41, 60, 50, 0.03);
+  --shadow-soft-lg: 0 12px 24px -4px rgba(41, 60, 50, 0.08), 0 4px 8px -2px rgba(41, 60, 50, 0.04);
+  --shadow-modal: 0 20px 40px -8px rgba(41, 60, 50, 0.16), 0 8px 16px -4px rgba(41, 60, 50, 0.06);
+}
+
+@layer base {
+  body {
+    background-color: #F7F4EC;
+    color: #292D29;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* Refined, quiet scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E8DDD1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B98579;
+  }
+}
