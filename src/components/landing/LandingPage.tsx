@@ -11,6 +11,8 @@ import {
   ShieldCheck,
   Compass,
   Layers,
+  Feather,
+  Camera,
 } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 import { ProductMockup } from './ProductMockup';
@@ -127,13 +129,13 @@ export const LandingPage: React.FC = () => {
 
           <div className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-charcoal-muted font-medium">
             <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-forest" /> Photo-to-Timetable Scanning
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-forest" /> SVA Reflective Journaling
+            </span>
+            <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-forest" /> Automatic Gap Detection
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-forest" /> Monday–Saturday Weekly Grid
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-forest" /> Transit Buffers & Conflict Guard
             </span>
           </div>
         </div>
@@ -204,31 +206,31 @@ export const LandingPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Feature 4: Break Planner */}
+            {/* Feature 4: SVA Reflective Journaling */}
             <div className="rounded-3xl bg-white border border-blush/80 p-8 shadow-soft-sm hover:shadow-soft transition-all duration-300">
               <div className="w-12 h-12 rounded-2xl bg-forest/10 text-forest flex items-center justify-center mb-6">
-                <Coffee className="w-6 h-6" strokeWidth={1.75} />
+                <Feather className="w-6 h-6" strokeWidth={1.75} />
               </div>
               <h3 className="font-heading font-semibold text-xl text-charcoal mb-2">
-                Mindful Study Breaks
+                SVA Reflective Journaling
               </h3>
               <p className="text-sm text-charcoal-muted leading-relaxed">
-                Cognitive stamina decays after sustained study. Receive non-intrusive prompts for campus strolls,
-                hydration checks, and visual eye rests.
+                A quiet space named SVA to log daily reflections, track mood and energy rhythms,
+                and unwind with thoughtful prompts between classes.
               </p>
             </div>
 
-            {/* Feature 5: Daily Goals */}
+            {/* Feature 5: Photo-to-Timetable Scanner */}
             <div className="rounded-3xl bg-white border border-blush/80 p-8 shadow-soft-sm hover:shadow-soft transition-all duration-300">
               <div className="w-12 h-12 rounded-2xl bg-rose/15 text-rose flex items-center justify-center mb-6">
-                <CheckCircle2 className="w-6 h-6" strokeWidth={1.75} />
+                <Camera className="w-6 h-6" strokeWidth={1.75} />
               </div>
               <h3 className="font-heading font-semibold text-xl text-charcoal mb-2">
-                Daily Goals & Micro-Tasks
+                Photo-to-Timetable Sync
               </h3>
               <p className="text-sm text-charcoal-muted leading-relaxed">
-                Prioritize problem sets, readings, and thesis milestones alongside your class schedule
-                with interactive completion tracking.
+                Snap a photo or upload a screenshot of your weekly schedule to extract courses,
+                rooms, and times automatically—updating your timetable and gaps in seconds.
               </p>
             </div>
 

@@ -32,6 +32,12 @@ interface TimetableContextType {
   openEditModal: (cls: AcademicClass) => void;
   isDiagnosticsOpen: boolean;
   setIsDiagnosticsOpen: (open: boolean) => void;
+  isScannerModalOpen: boolean;
+  setIsScannerModalOpen: (open: boolean) => void;
+  importClasses: (
+    newClasses: Omit<AcademicClass, 'id'>[],
+    mode: 'merge' | 'replace'
+  ) => { addedCount: number; skippedDuplicates: number };
   resetToSampleTimetable: () => void;
 }
 
@@ -156,6 +162,7 @@ export const TimetableProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [isClassModalOpen, setIsClassModalOpen] = useState(false);
   const [editingClass, setEditingClass] = useState<AcademicClass | null>(null);
   const [isDiagnosticsOpen, setIsDiagnosticsOpen] = useState(false);
+  const [isScannerModalOpen, setIsScannerModalOpen] = useState(false);
 
   // Sync to localStorage
   useEffect(() => {
@@ -278,6 +285,52 @@ export const TimetableProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setIsClassModalOpen(true);
   };
 
+  const importClasses = (
+    newClasses: Omit<AcademicClass, 'id'>[],
+    mode: 'merge' | 'replace'
+  ): { addedCount: number; skippedDuplicates: number } => {
+    const validCandidates = newClasses.filter((cls) => {
+      const startM = timeToMinutes(cls.startTime);
+      const endM = timeToMinutes(cls.endTime);
+      return cls.subject.trim().length > 0 && cls.days.length > 0 && endM > startM;
+    });
+
+    if (mode === 'replace') {
+      const createdList: AcademicClass[] = validCandidates.map((cls, idx) => ({
+        ...cls,
+        id: `cls-scan-${Date.now()}-${idx}-${Math.random().toString(36).substring(2, 6)}`,
+      }));
+      setClasses(createdList);
+      return { addedCount: createdList.length, skippedDuplicates: 0 };
+    }
+
+    let skippedDuplicates = 0;
+    const toAdd: AcademicClass[] = [];
+
+    validCandidates.forEach((cls, idx) => {
+      const isDup = [...classes, ...toAdd].some(
+        (existing) =>
+          existing.code.trim().toLowerCase() === cls.code.trim().toLowerCase() &&
+          existing.startTime === cls.startTime &&
+          existing.days.some((d) => cls.days.includes(d))
+      );
+      if (isDup) {
+        skippedDuplicates++;
+      } else {
+        toAdd.push({
+          ...cls,
+          id: `cls-scan-${Date.now()}-${idx}-${Math.random().toString(36).substring(2, 6)}`,
+        });
+      }
+    });
+
+    if (toAdd.length > 0) {
+      setClasses((prev) => [...prev, ...toAdd]);
+    }
+
+    return { addedCount: toAdd.length, skippedDuplicates };
+  };
+
   const resetToSampleTimetable = () => {
     setClasses(INITIAL_SAMPLE_CLASSES);
   };
@@ -307,6 +360,9 @@ export const TimetableProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         openEditModal,
         isDiagnosticsOpen,
         setIsDiagnosticsOpen,
+        isScannerModalOpen,
+        setIsScannerModalOpen,
+        importClasses,
         resetToSampleTimetable,
       }}
     >

@@ -5,8 +5,10 @@ import { SmartMealCard } from './SmartMealCard';
 import { NextFreePeriodCard } from './NextFreePeriodCard';
 import { DailyGoalsWidget } from './DailyGoalsWidget';
 import { QuickActionsBar } from './QuickActionsBar';
+import { SvaDashboardCard } from '../sva/SvaDashboardCard';
 import { ClassModal } from '../timetable/ClassModal';
 import { GapDiagnosticsModal } from '../timetable/GapDiagnosticsModal';
+import { TimetablePhotoScannerModal } from '../timetable/TimetablePhotoScannerModal';
 
 export const StudentDashboard: React.FC = () => {
   const [completedGoals, setCompletedGoals] = useState(2);
@@ -30,9 +32,10 @@ export const StudentDashboard: React.FC = () => {
           <TodayTimeline />
         </div>
 
-        {/* Right Column: Next Free Period, Smart Meal, Daily Goals (5 cols) */}
+        {/* Right Column: Next Free Period, Smart Meal, SVA Reflection, Daily Goals (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           <NextFreePeriodCard />
+          <SvaDashboardCard />
           <SmartMealCard />
           <DailyGoalsWidget
             onGoalsChange={(completed, total) => {
@@ -46,6 +49,7 @@ export const StudentDashboard: React.FC = () => {
       {/* Global Modals */}
       <ClassModal />
       <GapDiagnosticsModal />
+      <TimetablePhotoScannerModal />
     </div>
   );
 };

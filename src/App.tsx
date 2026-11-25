@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { TimetableProvider } from './context/TimetableContext';
+import { SvaProvider } from './context/SvaContext';
 import { AppLayout } from './components/layout/AppLayout';
 import { LandingPage } from './components/landing/LandingPage';
 import { StudentDashboard } from './components/dashboard/StudentDashboard';
 import { TimetableModule } from './components/timetable/TimetableModule';
+import { SvaModule } from './components/sva/SvaModule';
 import { GapsModule } from './components/modules/GapsModule';
 import {
   MealsModule,
@@ -26,6 +28,7 @@ const MainAppContent: React.FC = () => {
     <AppLayout>
       {activeModule === 'dashboard' && <StudentDashboard />}
       {activeModule === 'timetable' && <TimetableModule />}
+      {activeModule === 'sva' && <SvaModule />}
       {activeModule === 'gaps' && <GapsModule />}
       {activeModule === 'meals' && <MealsModule />}
       {activeModule === 'breaks' && <BreaksModule />}
@@ -41,7 +44,9 @@ export default function App() {
   return (
     <NavigationProvider>
       <TimetableProvider>
-        <MainAppContent />
+        <SvaProvider>
+          <MainAppContent />
+        </SvaProvider>
       </TimetableProvider>
     </NavigationProvider>
   );

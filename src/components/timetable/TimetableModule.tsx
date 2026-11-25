@@ -7,6 +7,7 @@ import {
   Clock,
   LayoutGrid,
   CalendarDays,
+  Camera,
 } from 'lucide-react';
 import { useTimetable } from '../../context/TimetableContext';
 import { WEEKDAYS, WEEKDAY_LABELS, WEEKDAY_SHORT_LABELS, Weekday } from '../../types/timetable';
@@ -14,6 +15,7 @@ import { WeeklyTimetable } from './WeeklyTimetable';
 import { DailyTimetable } from './DailyTimetable';
 import { ClassModal } from './ClassModal';
 import { GapDiagnosticsModal } from './GapDiagnosticsModal';
+import { TimetablePhotoScannerModal } from './TimetablePhotoScannerModal';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { cn } from '../../utils/cn';
@@ -29,6 +31,7 @@ export const TimetableModule: React.FC = () => {
     openCreateModal,
     weeklyConflicts,
     setIsDiagnosticsOpen,
+    setIsScannerModalOpen,
   } = useTimetable();
 
   const todayIndex = new Date().getDay(); // 0 is Sunday
@@ -106,6 +109,16 @@ export const TimetableModule: React.FC = () => {
               <span>Daily Flow</span>
             </button>
           </div>
+
+          {/* Scan Photo Button */}
+          <Button
+            variant="gold"
+            size="sm"
+            leftIcon={<Camera className="w-3.5 h-3.5" />}
+            onClick={() => setIsScannerModalOpen(true)}
+          >
+            Scan Photo
+          </Button>
 
           {/* Add Class Button */}
           <Button
@@ -188,6 +201,7 @@ export const TimetableModule: React.FC = () => {
       {/* 5. Modals */}
       <ClassModal />
       <GapDiagnosticsModal />
+      <TimetablePhotoScannerModal />
     </div>
   );
 };

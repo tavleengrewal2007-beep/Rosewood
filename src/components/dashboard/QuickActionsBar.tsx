@@ -1,11 +1,11 @@
 import React from 'react';
-import { PlusCircle, Calendar, Sparkles, Coffee, ShieldCheck } from 'lucide-react';
+import { PlusCircle, Calendar, Sparkles, Camera, Feather, ShieldCheck } from 'lucide-react';
 import { useTimetable } from '../../context/TimetableContext';
 import { useNavigation } from '../../context/NavigationContext';
 import { Button } from '../ui/Button';
 
 export const QuickActionsBar: React.FC = () => {
-  const { openCreateModal, setIsDiagnosticsOpen, selectedDay } = useTimetable();
+  const { openCreateModal, setIsDiagnosticsOpen, setIsScannerModalOpen, selectedDay } = useTimetable();
   const { setActiveModule } = useNavigation();
 
   return (
@@ -25,6 +25,24 @@ export const QuickActionsBar: React.FC = () => {
         </Button>
 
         <Button
+          variant="gold"
+          size="sm"
+          leftIcon={<Camera className="w-4 h-4 text-forest" />}
+          onClick={() => setIsScannerModalOpen(true)}
+        >
+          Scan Timetable Photo
+        </Button>
+
+        <Button
+          variant="outline"
+          size="sm"
+          leftIcon={<Feather className="w-4 h-4 text-rose" />}
+          onClick={() => setActiveModule('sva')}
+        >
+          SVA Journal
+        </Button>
+
+        <Button
           variant="outline"
           size="sm"
           leftIcon={<Calendar className="w-4 h-4 text-forest" />}
@@ -40,15 +58,6 @@ export const QuickActionsBar: React.FC = () => {
           onClick={() => setActiveModule('gaps')}
         >
           Scan Free Gaps
-        </Button>
-
-        <Button
-          variant="outline"
-          size="sm"
-          leftIcon={<Coffee className="w-4 h-4 text-rose" />}
-          onClick={() => setActiveModule('breaks')}
-        >
-          Plan Break
         </Button>
       </div>
 

@@ -11,6 +11,7 @@ import {
   Settings,
   Leaf,
   ArrowLeft,
+  Feather,
 } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 import { useTimetable } from '../../context/TimetableContext';
@@ -20,6 +21,7 @@ import { cn } from '../../utils/cn';
 export const navItems: NavItem[] = [
   { id: 'dashboard', label: 'Dashboard', iconName: 'LayoutDashboard' },
   { id: 'timetable', label: 'Smart Timetable', iconName: 'Calendar' },
+  { id: 'sva', label: 'SVA Journal', iconName: 'Feather', badge: 'SVA', badgeVariant: 'gold' },
   { id: 'gaps', label: 'Gap Detection', iconName: 'Sparkles', badge: 'Auto', badgeVariant: 'forest' },
   { id: 'meals', label: 'Meal Planner', iconName: 'UtensilsCrossed' },
   { id: 'breaks', label: 'Break Planner', iconName: 'Coffee' },
@@ -43,6 +45,7 @@ export const Sidebar: React.FC = () => {
     switch (name) {
       case 'LayoutDashboard': return <LayoutDashboard {...iconProps} />;
       case 'Calendar': return <Calendar {...iconProps} />;
+      case 'Feather': return <Feather {...iconProps} />;
       case 'Sparkles': return <Sparkles {...iconProps} />;
       case 'UtensilsCrossed': return <UtensilsCrossed {...iconProps} />;
       case 'Coffee': return <Coffee {...iconProps} />;

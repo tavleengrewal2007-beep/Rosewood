@@ -1,6 +1,7 @@
 export type ModuleId =
   | 'dashboard'
   | 'timetable'
+  | 'sva'
   | 'gaps'
   | 'meals'
   | 'breaks'

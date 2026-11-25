@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Calendar, Sparkles, CheckSquare, MoreHorizontal, X, Leaf, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, Calendar, Sparkles, Feather, MoreHorizontal, X, Leaf, ArrowLeft } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 import { navItems } from './Sidebar';
 import { cn } from '../../utils/cn';
@@ -34,6 +34,17 @@ export const MobileNav: React.FC = () => {
         </button>
 
         <button
+          onClick={() => setActiveModule('sva')}
+          className={cn(
+            'flex flex-col items-center py-1 px-3 rounded-xl text-xs font-medium transition-colors cursor-pointer',
+            activeModule === 'sva' ? 'text-forest font-semibold' : 'text-charcoal-muted'
+          )}
+        >
+          <Feather className="w-5 h-5 mb-0.5" strokeWidth={activeModule === 'sva' ? 2 : 1.75} />
+          <span>SVA</span>
+        </button>
+
+        <button
           onClick={() => setActiveModule('gaps')}
           className={cn(
             'flex flex-col items-center py-1 px-3 rounded-xl text-xs font-medium transition-colors cursor-pointer',
@@ -42,17 +53,6 @@ export const MobileNav: React.FC = () => {
         >
           <Sparkles className="w-5 h-5 mb-0.5" strokeWidth={activeModule === 'gaps' ? 2 : 1.75} />
           <span>Gaps</span>
-        </button>
-
-        <button
-          onClick={() => setActiveModule('goals')}
-          className={cn(
-            'flex flex-col items-center py-1 px-3 rounded-xl text-xs font-medium transition-colors cursor-pointer',
-            activeModule === 'goals' ? 'text-forest font-semibold' : 'text-charcoal-muted'
-          )}
-        >
-          <CheckSquare className="w-5 h-5 mb-0.5" strokeWidth={activeModule === 'goals' ? 2 : 1.75} />
-          <span>Goals</span>
         </button>
 
         <button
